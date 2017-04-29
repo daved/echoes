@@ -1,7 +1,6 @@
 FROM scratch
-MAINTAINER daved <disjuncter@gmail.com>
 ENV NAME goecho
-ENV SRV /srv
-ADD ./builds/${NAME} ${SRV}/
+ENV APP /app
+ADD ./builds/${NAME} ${APP}
 EXPOSE 25000
-ENTRYPOINT ["/srv/goecho"]
+ENTRYPOINT [ "/app" ]
