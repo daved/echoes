@@ -3,10 +3,25 @@ package main
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net"
+	"net/http"
 )
 
 func main() {
+	resp, err := http.Get("https://httpbin.org/user-agent")
+	if err != nil {
+		panic(err)
+	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	_ = resp.Body.Close()
+
+	fmt.Println(string(body))
+
 	l, err := net.Listen("tcp", ":25000")
 	if err != nil {
 		panic(err)
@@ -33,8 +48,8 @@ func handle(conn io.ReadWriteCloser) {
 			break
 		}
 
-		conn.Write(buf[:n])
+		_, _ = conn.Write(buf[:n])
 	}
 
-	conn.Close()
+	_ = conn.Close()
 }
