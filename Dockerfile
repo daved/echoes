@@ -1,7 +1,6 @@
 FROM golang:1.8.1
 ENV APP /app
-ENV SRC /go/src${APP}
-WORKDIR ${SRC}/
+WORKDIR /go/src${APP}/
 COPY *.go .
 RUN CGO_ENABLED=0 GOOS=linux; go build -a -tags netgo -ldflags '-w' -o ${APP}
 
