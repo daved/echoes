@@ -27,6 +27,19 @@ docker build -t {namespace}/goecho .
 ```
 
 ### Run (container)
+
 ```
 docker run -i -p {port}:25000 {namespace}/goecho:latest
+```
+
+### Interact (telnet)
+
+```
+telnet 0 25000
+```
+
+### Interact (netcat)
+
+```
+nc 0 25000
 ```
