@@ -1,6 +1,13 @@
-FROM scratch
-ENV NAME goecho
+FROM golang:1.8.1
 ENV APP /app
-ADD ./builds/${NAME} ${APP}
+ENV SRC /go/src${APP}
+WORKDIR ${SRC}/
+COPY *.go .
+RUN CGO_ENABLED=0 GOOS=linux; go build -a -tags netgo -ldflags '-w' -o ${APP}
+
+FROM scratch
+ENV CERTS /etc/ssl/certs/ca-certificates.crt
+COPY --from=0 ${CERTS} ${CERTS}
+COPY --from=0 ${APP} ${APP}
 EXPOSE 25000
 ENTRYPOINT [ "/app" ]
