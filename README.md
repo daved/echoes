@@ -2,9 +2,9 @@
 
     go get github.com/daved/goecho/...
 
-Package echo provides a simple udp echo example and dockerfile. An https request
-is also sent before the echo server runs in order to ensure that the docker
-container has working access to the net lib and ca-certs.
+goecho is a simple udp echo example. An https request is also sent before the 
+echo server runs in order to ensure that a docker container built from the
+provided dockerfile has working access to the net lib and ca-certs.
 
 ## Usage
 
