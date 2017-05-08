@@ -2,7 +2,7 @@
 
     go get github.com/daved/goecho
 
-goecho is a simple udp echo example. An https request is also sent before the 
+goecho is a simple tcp echo example. An https request is also sent before the 
 echo server runs in order to ensure that a docker container built from the
 provided dockerfile has working access to the net lib and ca-certs.
 
